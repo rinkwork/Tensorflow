@@ -1,5 +1,5 @@
-import tensorflow
 import tensorflow as tf
+import numpy as np
 
 a = tf.constant([[1, 2],
                  [3, 4]])
@@ -37,3 +37,38 @@ print(f'default type = {d.dtype}')
 
 d_float = tf.cast(d, dtype=tf.float16)
 print(f'type change into float= {d_float.dtype}')
+
+# absolute value
+e = tf.constant([-1.3, 3.3, -8.9])
+print(f'absolute value of e = {tf.abs(e)}')
+
+# finding min, max, mean, sum of tensor
+Z = tf.constant(np.random.randint(low=0, high=10, size=(2,3)))
+print(f'tensor Z = {Z}')
+
+print(f'min value in Z = {tf.reduce_min(Z)}')
+print(f'max value in Z = {tf.reduce_max(Z)}')
+print(f'mean value in Z = {tf.reduce_mean(Z)}')
+print(f'Sum of all element in Z = {tf.reduce_sum(Z)}')
+
+# finding positional maximum and minimum
+
+f = tf.constant([1,2,4,9,18,3,7,9,0,6])
+
+print(f'maximum valued element position in f = {tf.argmax(f)}')
+print(f'minimum valued element position in f = {tf.argmin(f)}')
+
+# squeezing a tensor
+S = tf.constant(np.random.randint(0, 100, 50), shape=(1, 1, 1, 1, 50))
+print(f'S.shape, S.ndim = {S.shape},{S.ndim}')
+
+S_squeezed = tf.squeeze(S)
+print(f'S_squeezed.shape, S_squeezed.ndim = {S_squeezed.shape},{S_squeezed.ndim}')
+
+# one-hot encoding
+
+some_list = [0, 1, 2, 3]
+print(f'one-hot encoding = {tf.one_hot(some_list, depth=4)}')
+
+# specify name or text instead of 0 and 1
+print(f'one-hot encoding with text = {tf.one_hot(some_list, depth=4, on_value="on_time", off_value="off_time")}')
