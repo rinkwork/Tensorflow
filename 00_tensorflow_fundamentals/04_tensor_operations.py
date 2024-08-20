@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+from tensorflow.python.keras.backend import dtype
 
 a = tf.constant([[1, 2],
                  [3, 4]])
@@ -72,3 +73,18 @@ print(f'one-hot encoding = {tf.one_hot(some_list, depth=4)}')
 
 # specify name or text instead of 0 and 1
 print(f'one-hot encoding with text = {tf.one_hot(some_list, depth=4, on_value="on_time", off_value="off_time")}')
+
+# squaring, log, square root
+H = tf.constant(np.arange(1, 10))
+print(f'H = {H}')
+
+# square
+print(f'square of H = {tf.square(H)}')
+
+# for square root you should cast your datatype into float
+H = tf.cast(H, dtype=tf.float16)
+print(f'square root of H = {tf.sqrt(H)}')
+
+# log (for log you also need float data typed tensor)
+print(f'log of h = {tf.math.log(H)}')
+
